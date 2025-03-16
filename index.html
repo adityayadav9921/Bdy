@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title>Happy Birthday My Love ❤️</title--->
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .cube-container {
+            perspective: 800px;
+        }
+
+        .cube {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateY(0deg);
+            cursor: grab;
+            transition: transform 0.2s ease-out;
+        }
+
+        .face {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .front  { transform: translateZ(125px); background-image: url('1.jpg'); }
+        .back   { transform: rotateY(180deg) translateZ(125px); background-image: url('2.jpg'); }
+        .left   { transform: rotateY(-90deg) translateZ(125px); background-image: url('3.jpg'); }
+        .right  { transform: rotateY(90deg) translateZ(125px); background-image: url('4.jpg'); }
+        .top    { transform: rotateX(90deg) translateZ(125px); background-image: url('5.jpg'); }
+        .bottom { transform: rotateX(-90deg) translateZ(125px); background-image: url('6.jpg'); }
+
+        .face:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .quote-text {
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            width: 90%;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #fff;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday Bootni❤</h1>
+
+    <div class="cube-container">
+        <div class="cube" id="cube">
+            <div class="face front">
+                <div class="quote-text">"You are my sunshine, my moon, and all my stars"</div>
+            </div>
+            <div class="face back">
+                <div class="quote-text">"Every moment with you is a blessing. Happy Birthday, my love"</div>
+            </div>
+            <div class="face left">
+                <div class="quote-text">"You make my world brighter every day. Shine on"</div>
+            </div>
+            <div class="face right">
+                <div class="quote-text">"With you, every day feels special. Happy Birthday"</div>
+            </div>
+            <div class="face top">
+                <div class="quote-text">"Your love makes my heart dance with joy"</div>
+            </div>
+            <div class="face bottom">
+                <div class="quote-text">"You are my greatest adventure and my sweetest dream"</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        "May your day be filled with love, joy, and endless smiles"
+    </div>
+
+    <script>
+        const cube = document.getElementById('cube');
+        let isDragging = false;
+        let startX, startY;
+        let currentX = 0, currentY = 0;
+
+        cube.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+
+            currentX += deltaX * 0.5;
+            currentY -= deltaY * 0.5;
+
+            cube.style.transform = `rotateX(${currentY}deg) rotateY(${currentX}deg)`;
+
+            startX = e.clientX;
+            startY = e.clientY;
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        cube.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.touches[0].clientX - startX;
+            const deltaY = e.touches[0].clientY - startY;
+
+            currentX += deltaX * 0.5;
+            currentY -= deltaY * 0.5;
+
+            cube.style.transform = `rotateX(${currentY}deg) rotateY(${currentX}deg)`;
+
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+    </script>
+</body>
+</html>
